@@ -1,0 +1,147 @@
+body {
+         font-family: Arial, sans-serif;
+         text-align: center;
+         background-color: #f4f4f4;
+     }
+
+     .button {
+         padding: 10px 20px;
+         background-color: #3498db;
+         color: white;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         font-size: 1.2rem;
+     }
+
+     .button:disabled {
+         background-color: #bdc3c7;
+         cursor: not-allowed;
+     }
+
+     .result {
+         margin-top: 20px;
+         font-size: 1.5rem;
+         height: 50px;
+     }
+
+         .result.common {
+             color: gray;
+         }
+    
+         .result.uncommon {
+             color: green;
+         }
+    
+         .result.rare {
+             color: blue;
+         }
+    
+         .result.epic {
+             color: purple;
+         }
+    
+         .result.legendary {
+             color: orange;
+         }
+    
+         .result.godly {
+             color: red;
+         }
+    
+         .result.impossible {
+             background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+             -webkit-background-clip: text;
+             background-clip: text;
+             color: transparent;
+         }
+     .inventory {
+         margin-top: 30px;
+         text-align: center;
+     }
+
+     .inventory ul {
+         list-style: none;
+         padding: 0;
+     }
+
+     .inventory li {
+         margin: 5px 0;
+         font-size: 1.2rem;
+     }
+
+     .spinner {
+         margin: 20px auto;
+         height: 50px;
+         width: 50px;
+         border: 5px solid #ddd;
+         border-top: 5px solid #3498db;
+         border-radius: 50%;
+         animation: spin 1s linear infinite;
+         display: none;
+     }
+/* Stijl voor de inventory container met een lichte grijze achtergrond */
+.inventory {
+    margin-top: 30px;
+    text-align: center;
+    background-color: #f0f0f0;  /* Lichte grijze achtergrond */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Flexbox voor de lijst van de inventory */
+.inventory-list {
+    display: flex;
+    flex-wrap: wrap;  /* Zorgt ervoor dat de items naar de volgende regel gaan als er geen ruimte is */
+    gap: 10px;  /* Ruimte tussen de items */
+    list-style-type: none;
+    padding: 0;
+    justify-content: center;  /* Zorgt ervoor dat de items gecentreerd worden */
+}
+
+/* Stijl voor de individuele inventory items */
+.inventory-list li {
+    background-color: #ffffff;  /* Witte achtergrond voor de items */
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    min-width: 120px;  /* Minimaal de breedte voor elk item */
+    max-width: 150px;  /* Zorgt ervoor dat de breedte niet groter wordt dan deze waarde */
+    text-align: center;
+    flex: 1 1 150px;  /* Zorgt ervoor dat de breedte van elk item hetzelfde is */
+    font-size: 1.2rem;  /* Zorg ervoor dat de tekstgrootte altijd consistent is */
+    box-sizing: border-box;  /* Houdt rekening met padding en borders voor de boxgrootte */
+}
+
+.common {
+    color: gray;
+}
+
+.uncommon {
+    color: green;
+}
+
+.rare {
+    color: blue;
+}
+
+.epic {
+    color: purple;
+}
+
+.legendary {
+    color: orange;
+}
+
+.godly {
+    color: red;
+}
+
+.impossible {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Stijl voor de inventory container met een lichte grijze achtergrond */
