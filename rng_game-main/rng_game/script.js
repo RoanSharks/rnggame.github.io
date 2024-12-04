@@ -1,126 +1,24 @@
 // Kansverdeling per rarity
 const rarityChance = {
-    Common: 0.001,
+    Common: 50,
     Uncommon: 30,
     Rare: 10,
     Epic: 5,
     Legendary: 4,
     Godly: 0.001, // 0.01%
-    Impossible: 50 // 0.001%
+    Impossible: 0.0001 // 0.001%
 };
 
-// Basis items met naam en rarity
-const rawItems = [
-  // Common
-  { name: "charmander", rarity: "Common" },
-  { name: "squirtle", rarity: "Common" },
-  { name: "bulbasaur", rarity: "Common" },
-  { name: "Tengu", rarity: "Common" },
-  { name: "Kappa", rarity: "Common" },
-  { name: "Goblin", rarity: "Common" },
-  { name: "Imp", rarity: "Common" },
-  { name: "Slime", rarity: "Common" },
-  { name: "Grub", rarity: "Common" },
-  { name: "Rabbit", rarity: "Common" },
-  { name: "Sparrow", rarity: "Common" },
-  { name: "Frog", rarity: "Common" },
-
-  // Uncommon
-  { name: "Charmeleon", rarity: "Uncommon" },
-  { name: "Wartortle", rarity: "Uncommon" },
-  { name: "Ivysaur", rarity: "Uncommon" },
-  { name: "Oni", rarity: "Uncommon" },
-  { name: "Dullahan", rarity: "Uncommon" },
-  { name: "Kitsune", rarity: "Uncommon" },
-  { name: "Yeti", rarity: "Uncommon" },
-  { name: "Basilisk", rarity: "Uncommon" },
-  { name: "Manticore", rarity: "Uncommon" },
-  { name: "Cyclops", rarity: "Uncommon" },
-
-  // Rare
-  { name: "Charizard", rarity: "Rare" },
-  { name: "Blastoise", rarity: "Rare" },
-  { name: "Venusaur", rarity: "Rare" },
-  { name: "Raijin", rarity: "Epic" },
-  { name: "Fujin", rarity: "Epic" },
-  { name: "Sekhmet", rarity: "Rare" },
-  { name: "Anubis", rarity: "Legendary" },
-  { name: "Griffin", rarity: "Rare" },
-  { name: "Enkidu", rarity: "Rare" },
-  { name: "Minotaur", rarity: "Rare" },
-  { name: "Celtic Wolf", rarity: "Rare" },
-
-  // Epic
-  { name: "Hercules", rarity: "Epic" },
-  { name: "Achilles", rarity: "Epic" },
-  { name: "Perseus", rarity: "Epic" },
-  { name: "Raijin", rarity: "Epic" },
-  { name: "Fujin", rarity: "Epic" },
-  { name: "Bastet", rarity: "Epic" },
-  { name: "Set", rarity: "Epic" },
-  { name: "Basilisk", rarity: "Epic" },
-  { name: "Red-Eyes Black Dragon", rarity: "Epic" },
-  { name: "Yami Yugi", rarity: "Epic" },
-  { name: "Kraken", rarity: "Epic" },
-  { name: "Cerberus", rarity: "Epic" },
-
-  // Legendary
-  { name: "Cerberus", rarity: "Legendary" },
-  { name: "Medusa", rarity: "Legendary" },
-  { name: "Cyclops", rarity: "Legendary" },
-  { name: "Dark Magician", rarity: "Rare" },
-  { name: "Blue-Eyes White Dragon", rarity: "Legendary" },
-  { name: "Exodia", rarity: "Legendary" },
-  { name: "Tiamat", rarity: "Legendary" },
-  { name: "Hydra", rarity: "Legendary" },
-  { name: "Phoenix", rarity: "Legendary" },
-  { name: "Mew", rarity: "Legendary" },
-  { name: "Mewtwo", rarity: "Legendary" },
-  { name: "Lugia", rarity: "Legendary" },
-  { name: "Ho-Oh", rarity: "Legendary" },
-  { name: "Rayquaza", rarity: "Legendary" },
-  { name: "Groudon", rarity: "Legendary" },
-  { name: "Kyogre", rarity: "Legendary" },
-  { name: "Zygarde", rarity: "Legendary" },
-  { name: "Exodia", rarity: "Legendary" },
-
-  // Godly
-  { name: "Zeus", rarity: "Godly" },
-  { name: "Poseidon", rarity: "Godly" },
-  { name: "Athena", rarity: "Godly" },
-  { name: "Hades", rarity: "Godly" },
-  { name: "Apollo", rarity: "Godly" },
-  { name: "Artemis", rarity: "Godly" },
-  { name: "Hermes", rarity: "Godly" },
-  { name: "Ares", rarity: "Godly" },
-  { name: "Hera", rarity: "Godly" },
-  { name: "Amaterasu", rarity: "Godly" },
-  { name: "Susanoo", rarity: "Godly" },
-  { name: "Tsukuyomi", rarity: "Godly" },
-  { name: "Ra", rarity: "Godly" },
-  { name: "Osiris", rarity: "Godly" },
-  { name: "Isis", rarity: "Godly" },
-  { name: "Horus", rarity: "Godly" },
-  { name: "Shiva", rarity: "Godly" },
-  { name: "Vishnu", rarity: "Godly" },
-
-  // Mythological and Legendary
-  { name: "Gilgamesh", rarity: "Epic" },
-  { name: "Marduk", rarity: "Godly" },
-  { name: "Tengu", rarity: "Uncommon" },
-  { name: "Sphinx", rarity: "Legendary" },
-  { name: "Jörmungandr", rarity: "Legendary" },
-  { name: "Basilisk", rarity: "Epic" },
-  { name: "Chimera", rarity: "Legendary" },
-
-  // impossibles
-  { name: "RoanSharks", rarity: "Impossible" },
-  { name: "casis1005", rarity: "Impossible" },
-  { name: "poinsenops", rarity: "Impossible" },
-];
+// Functie om items te laden vanuit items.json
+async function loadItems() {
+    const response = await fetch('items.json');
+    const items = await response.json();
+    return items;
+}
 
 // Functie om de kans voor elk item te berekenen
-function calculateChances() {
+async function calculateChances() {
+    const rawItems = await loadItems();
     const itemCounts = { Common: 0, Uncommon: 0, Rare: 0, Epic: 0, Legendary: 0, Godly: 0, Impossible: 0 };
 
     // Telling van het aantal items per rarity
@@ -138,7 +36,10 @@ function calculateChances() {
 }
 
 // Verkrijg items met berekende kansen
-const items = calculateChances();
+let items = [];
+calculateChances().then(calculatedItems => {
+    items = calculatedItems;
+});
 
 // Functie om de inventory uit localStorage te laden
 function loadInventory() {
@@ -154,10 +55,12 @@ function saveInventory(inventory) {
 // Inventory object om bij te houden hoeveel van elk item je hebt
 let inventory = loadInventory();
 let isRolling = false; // Voorkomt spammen
+let rollsLeft = 5; // Aantal rolls per dag
+let lastRollTime = localStorage.getItem('lastRollTime') ? new Date(localStorage.getItem('lastRollTime')) : new Date();
 
 // Functie om een item te selecteren op basis van kansen
 function roll() {
-    if (isRolling) return; // Stop als er al gerold wordt
+    if (isRolling || rollsLeft <= 0) return; // Stop als er al gerold wordt of geen rolls meer over zijn
     isRolling = true;
 
     const rollButton = document.getElementById("rollButton");
@@ -203,6 +106,14 @@ function roll() {
         // Update de inventory weergave
         updateInventory();
     }, 1500); // 1500 milliseconden (1,5 seconde) vertraging
+
+    // Verminder het aantal rolls
+    rollsLeft--;
+    localStorage.setItem('rollsLeft', rollsLeft);
+    localStorage.setItem('lastRollTime', new Date());
+
+    // Update the rolls left display
+    updateRollsLeft();
 }
 
 // Functie om de inventory weer te geven, gesorteerd op zeldzaamheid
@@ -228,18 +139,83 @@ function updateInventory() {
     // Voeg de items toe aan de lijst
     for (const item of sortedItems) {
         const listItem = document.createElement("li");
-        listItem.textContent = `${item.rarity}: ${item.name} x${item.count}`;
+        listItem.textContent = `${item.rarity}: ${item.name} x${item.count} ($: ${item.value})`;
+
+        // Voeg een verkoopknop toe aan elk item
+        const sellButton = document.createElement("button");
+        sellButton.textContent = "Sell";
+        sellButton.onclick = () => sellCard(item.name);
+        listItem.appendChild(sellButton);
+
         inventoryList.appendChild(listItem);
     }
 }
 
+// Functie om de rollen over te zetten
+function updateRollsLeft() {
+    const rollsLeftDiv = document.getElementById("rolesleft");
+    rollsLeftDiv.innerText = `Rolls Left: ${rollsLeft}`;
+}
+
+// Functie om kaarten te verkopen
+function sellCard(cardName) {
+    if (inventory[cardName]) {
+        const cardValue = inventory[cardName].value;
+        rollsLeft += cardValue; // Voeg rolls toe op basis van de waarde van de kaart
+        inventory[cardName].count--;
+
+        if (inventory[cardName].count <= 0) {
+            delete inventory[cardName];
+        }
+
+        saveInventory(inventory);
+        updateInventory();
+        localStorage.setItem('rollsLeft', rollsLeft);
+        updateRollsLeft();
+    }
+}
+
+// Functie om de timer voor rolls te resetten
+function resetRolls() {
+    const now = new Date();
+    const timeDiff = now - lastRollTime;
+    const hoursDiff = timeDiff / (1000 * 60 * 60);
+
+    if (hoursDiff >= 24) {
+        rollsLeft = 5;
+        localStorage.setItem('rollsLeft', rollsLeft);
+        lastRollTime = now;
+        localStorage.setItem('lastRollTime', lastRollTime);
+        updateRollsLeft();
+    }
+}
+
+// Functie om rolls elke minuut te verhogen
+function incrementRolls() {
+    rollsLeft++;
+    localStorage.setItem('rollsLeft', rollsLeft);
+    updateRollsLeft();
+}
+
 // Initialiseren van de inventory na het laden van de pagina
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     // Laad de inventory uit localStorage
     inventory = loadInventory();
+    rollsLeft = localStorage.getItem('rollsLeft') ? parseInt(localStorage.getItem('rollsLeft')) : 5;
+    lastRollTime = localStorage.getItem('lastRollTime') ? new Date(localStorage.getItem('lastRollTime')) : new Date();
+
+    // Reset rolls als het een nieuwe dag is
+    resetRolls();
+
+    // Laad items en bereken kansen
+    items = await calculateChances();
 
     // Toon de inventory zodra de pagina wordt geladen
     updateInventory();
+
+    // Update the rolls left display
+    updateRollsLeft();
+
+    // Start interval om elke minuut rolls te verhogen
+    setInterval(incrementRolls, 60000); // 60000 milliseconden = 1 minuut
 });
-
-
