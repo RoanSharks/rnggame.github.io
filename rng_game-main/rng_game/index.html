@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>RNG Roll Game</title>
 </head>
+
 <body>
     <h1>RNG Roll Game</h1>
     <button class="button" id="rollButton1" onclick="roll()">Roll! 1</button>
-    <button class="button" id="rollButton2" onclick="rollx10()">Roll! 10</button>
-    <button class="button" id="rollButton3" onclick="rollx100()">Roll! 100</button>
-    <button class="button" id="rollButton4" onclick="rollx1000()">Roll! 1000</button>
-    <button class="button" id="rollButton5" onclick="rollx10000()">Roll! 10000</button>
-    <button class="button" id="rollButton6" onclick="rollx100000()">Roll! 100000</button>
-    <button class="button" id="rollButton6" onclick="rollx1000000()">Roll! 1000000</button>
+    <button class="button" id="rollButton2" onclick="rollxanny()">roll</button>
+    <input type="number" id="inputValue" placeholder="Aantal rolls" min="1">
     <div class="result" id="result">Click the button to roll!</div>
     <div class="rolesleft" id="rolesleft">Rolls Left: 5</div> <!-- Added this line -->
     <div class="inventory">
         <h2>Your Inventory:</h2>
         <ul id="inventory" class="inventory-list"></ul>
-    </div>    
+    </div>
     <div id="inventory"></div>
     <script src="script.js"></script>
 </body>
+
 </html>
