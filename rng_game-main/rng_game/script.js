@@ -1,4 +1,4 @@
-// Kansverdeling per rarity
+
 
 
 const rarityChance = {
@@ -60,6 +60,7 @@ let isRolling = false; // Voorkomt spammen
 let rollsLeft = 5; // Aantal rolls per dag
 let lastRollTime = localStorage.getItem('lastRollTime') ? new Date(localStorage.getItem('lastRollTime')) : new Date();
 
+const multiplayer = 100000000
 // Functie om een item te selecteren op basis van kansen
 function roll() {
     if (isRolling || rollsLeft <= 0) return; // Stop als er al gerold wordt of geen rolls meer over zijn
@@ -239,7 +240,7 @@ function updateRollsLeft() {
 // Functie om kaarten te verkopen
 function sellCard(cardName) {
     if (inventory[cardName]) {
-        const cardValue = inventory[cardName].value;
+        const cardValue = inventory[cardName].value * multiplayer;
         rollsLeft += cardValue; // Voeg rolls toe op basis van de waarde van de kaart
         inventory[cardName].count--;
 
